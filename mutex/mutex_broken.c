@@ -66,7 +66,6 @@ void* increment_count2() {
 
 	fclose(fout);
 
-	pthread_mutex_unlock(&sync_mutex);
 	pthread_exit(NULL);
 }
 
@@ -97,7 +96,6 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 	
-	pthread_mutex_lock(&sync_mutex);
 	err = pthread_create(&threads[1], NULL, &increment_count2, NULL);
 	if(err) {
 		printf("ERROR: return code for pthread_create() is %d\n", err);
