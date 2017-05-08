@@ -30,7 +30,6 @@ void* increment_count2() {
 			totals[0] = count;
 		}
 	}
-	pthread_mutex_unlock(&sync_mutex);
 	pthread_exit(NULL);
 }
 
@@ -61,17 +60,18 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 	
-	pthread_mutex_lock(&sync_mutex);
 	err = pthread_create(&threads[1], NULL, &increment_count2, NULL);
 	if(err) {
 		printf("ERROR: return code for pthread_create() is %d\n", err);
 		exit(1);
 	}
-
+	
+	pthread_mutex_lock(&sync_mutex);
 	for(int i = 0; i < 10; ++i) {
 		printf("%d\n", totals[i]);
 		fprintf(fout, "%d\n", totals[i]);
 	}
+	pthread_mutex_unlock(&sync_mutex);
 	
 	fclose(fout);
 
