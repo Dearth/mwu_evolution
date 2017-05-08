@@ -25,7 +25,7 @@ void* increment_count() {
 	}
 
 	for(int i = 0; i < 10; ++i) {
-		fprintf("%d\n", totals[i]);
+		fprintf(fout, "%d\n", totals[i]);
 	}
 
 	fclose(fout);
@@ -53,7 +53,7 @@ void* increment_count2() {
 	}
 	
 	for(int i = 0; i < 10; ++i) {
-		fprintf("%d\n", totals[i]);
+		fprintf(fout, "%d\n", totals[i]);
 	}
 
 	fclose(fout);
