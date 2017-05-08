@@ -25,7 +25,11 @@ void* increment_count() {
 	}
 
 	for(int i = 0; i < 10; ++i) {
-		fprintf(fout, "%d\n", totals[i]);
+		if(i > 0) {
+			fprintf(fout, "%d %d\n", totals[i], (totals[i] > totals[i-1]));
+		} else {
+			fprintf(fout, "%d 1\n", totals[i]);
+		}
 	}
 
 	fclose(fout);
@@ -53,7 +57,11 @@ void* increment_count2() {
 	}
 	
 	for(int i = 0; i < 10; ++i) {
-		fprintf(fout, "%d\n", totals[i]);
+		if(i > 0) {
+			fprintf(fout, "%d %d\n", totals[i], (totals[i] > totals[i-1]));
+		} else {
+			fprintf(fout, "%d 1\n", totals[i]);
+		}
 	}
 
 	fclose(fout);
